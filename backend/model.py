@@ -24,3 +24,9 @@ class SignUp(BaseModel):
     first_name: str
     last_name: str
     email: str
+
+class GetSignUp(BaseModel):
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    first_name: str
+    last_name: str
+    email: str

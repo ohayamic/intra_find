@@ -83,8 +83,9 @@ async def post_signUp(signUp: SignUp):
     raise HTTPException(400, "Something went wrong")
 
 @app.put("/api/signUp/{firstname}/", tags=['SignUp'], response_model=SignUp)
-async def put_signUp(firstname: str, signUp: SignUp):
-    response = await update_signUp(firstname, signUp)
+async def put_signUp(firstname: str, signup: SignUp):
+    print(signup.dict())
+    response = await update_signUp(firstname, signup)
     if response:
         return response
     raise HTTPException(404, f"There is no signUp with the firstname {firstname}")

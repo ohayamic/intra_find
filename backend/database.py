@@ -2,7 +2,7 @@ import os
 import json
 from bson import json_util
 import motor.motor_asyncio
-from model import Todo, SignUp
+from model import Todo, SignUp, GetSignUp
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -43,8 +43,8 @@ async def fetch_one_signUp(first_name):
 async def fetch_all_signUps():
     signUps = []
     allSignUps = collection.find({})
-    async for document in allSignUps:
-        signUps.append(SignUp(**document))
+    async for doc in allSignUps:
+        signUps.append(json.loads(json_util.dumps(doc)))
     return signUps
 
 async def create_signUp(signUp):
@@ -53,7 +53,7 @@ async def create_signUp(signUp):
     return document
 
 async def update_signUp(firstname, signUp):
-    await collection.update_one({"firstname": firstname}, {"$set": {"signUp": signUp}})
+    await collection.update_one({"firstname": firstname}, {"$set": signUp})
     document = await collection.find_one({"firstname": firstname})
     return document
 
