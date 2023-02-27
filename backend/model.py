@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from typing import Optional
 from bson import ObjectId
 
 class PyObjectId(ObjectId):
@@ -24,6 +25,10 @@ class SignUp(BaseModel):
     first_name: str
     last_name: str
     email: str
+class UpdateSignUp(BaseModel):
+    first_name: Optional[str]
+    last_name: Optional[str]
+    email: Optional[str]
 
 class GetSignUp(BaseModel):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
