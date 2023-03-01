@@ -8,33 +8,7 @@ load_dotenv()
 
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ["MONGODB_URL"])
 database = client.SignUpList
-collection = database.users
-
-async def fetch_one_todo(title):
-    document = await collection.find_one({"title": title})
-    return document
-
-async def fetch_all_todos():
-    todos = []
-    todosInDB = collection.find({})
-    async for doc in todosInDB:
-        todos.append(json.loads(json_util.dumps(doc)))
-    return todos
-
-async def create_todo(todo):
-    document = todo
-    result = await collection.insert_one(document)
-    return document
-
-
-async def update_todo(title, desc):
-    await collection.update_one({"title": title}, {"$set": {"description": desc}})
-    document = await collection.find_one({"title": title})
-    return document
-
-async def remove_todo(title):
-    await collection.delete_one({"title": title})
-    return True
+collection = database['users']
 
 async def fetch_one_signUp(first_name):
     document = await collection.find_one({"first_name": first_name})
@@ -52,9 +26,9 @@ async def create_signUp(signUp):
     result = await collection.insert_one(document)
     return document
 
-async def update_signUp(firstname, signUp):
-    await collection.update_one({"firstname": firstname}, {"$set": signUp})
-    document = await collection.find_one({"firstname": firstname})
+async def update_signUp(last_name, signUp):
+    await collection.update_one({"last_name": last_name}, {"$set": signUp})
+    document = await collection.find_one({"last_name": last_name})
     return document
 
 async def remove_signUp(email):

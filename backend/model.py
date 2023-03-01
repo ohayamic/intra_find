@@ -17,14 +17,11 @@ class PyObjectId(ObjectId):
     def __modify_schema__(cls, field_schema):
         field_schema.update(type="string")
 
-class Todo(BaseModel):
-    title: str
-    description: str
-
 class SignUp(BaseModel):
     first_name: str
     last_name: str
     email: str
+
 class UpdateSignUp(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
