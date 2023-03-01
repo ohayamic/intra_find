@@ -2,7 +2,7 @@ import os
 import json
 from bson import json_util
 import motor.motor_asyncio
-from model import Todo, SignUp, GetSignUp
+from model import SignUp, GetSignUp
 from dotenv import load_dotenv
 load_dotenv()
 

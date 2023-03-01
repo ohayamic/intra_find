@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Body, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from model import Todo, SignUp, UpdateSignUp
+from model import  SignUp, UpdateSignUp
 from database import (
     fetch_one_signUp,
     fetch_all_signUps,
