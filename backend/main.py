@@ -37,7 +37,7 @@ async def get_signUp_by_firstname(firstname):
         return response
     raise HTTPException(404, f"There is no signUp with the firstname {firstname}")
 
-@app.post("/api/signUp/", tags=['SignUp'], response_model=SignUp)
+@app.post("/api/signUp", tags=['SignUp'], response_model=SignUp)
 async def post_signUp(signUp: SignUp):
     response = await create_signUp(signUp.dict())
     if response:

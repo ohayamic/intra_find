@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ["MONGODB_URL"])
-database = client.SignUpList
-collection = database['users']
+database = client.store
+collection = database['product']
 
 async def fetch_one_signUp(first_name):
     document = await collection.find_one({"first_name": first_name})
